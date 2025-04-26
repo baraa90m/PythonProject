@@ -1,14 +1,15 @@
 # Project ATM Functionality
-# A2Z Bank by Harisystems
 
 import time    # this time command so I can make the code wait before doing something
 import sys     # this imports system command
 from datetime import datetime
 
+
 class BankAccount:
 
-    def __init__(self, balance = 100):
+    def __init__(self, balance = 100, PIN = 0000):
         self.balance = balance
+        self.PIN = PIN
         self.transactions = []
 
     def display_balance(self):
@@ -42,17 +43,27 @@ class BankAccount:
         for date_time, action, amount in self.transactions:
             print(f"{date_time} : ({action} : {amount}$)")
 
+    def change_pin(self):
+        new_pin = int(input("Enter a new PIN: "))
+        confirm_new_pin = int(input("Confirm new PIN: "))
+        if new_pin == confirm_new_pin:
+            self.PIN = new_pin
+            print("Successfully changed PIN.")
+        else:
+            print("Your new PIN is incorrect. Please try again.")
+
+
 def main():
     account = BankAccount()
     print("""
-    Password is 1212.
+    Password is 0000.
     Don't use caps.
     You can only see your previous 10 transactions.""")
     time.sleep(1)
 
     for attempt in range(3):
         pin = int(input("Please enter PIN: "))
-        if pin == 1212:
+        if pin == account.PIN:
             print("Correct PIN")
             break
         else:
@@ -69,7 +80,8 @@ def main():
         2- Withdraw Funds
         3- Deposit Funds
         4- Show Transactions
-        5- Return Card
+        5- Change PIN
+        6- Return Card
         --->: """)
         if menu == "1":
             account.display_balance()
@@ -88,6 +100,12 @@ def main():
         elif menu == "4":
             account.show_transactions()
         elif menu == "5":
+            current_pin = int(input("Please enter your current PIN: "))
+            if current_pin == account.PIN:
+                account.change_pin()
+            else:
+                print("Incorrect PIN.")
+        elif menu == "6":
             print("Thank you for banking.")
             sys.exit()
         else:
