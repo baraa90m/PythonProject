@@ -18,8 +18,8 @@ obj.sell()
 
 # Change the price
 obj.setMaxPrice(4000)
-obj.__maxprice = 5000   # The price will be NOT changed directly. 
+obj.__maxprice = 5000   # The price will be NOT changed directly.
 obj.sell()
 
 # Conclusion: When we want to change the "maxprice", we can do it only with the method setMaxPrice().
-# This means that we can't change the price directly with "obj.self.__maxprice = 4000"
+# This means that we can't change the price directly with "obj.__maxprice = 4000"
