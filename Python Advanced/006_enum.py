@@ -26,3 +26,9 @@ color = Enum('Color', [('RED', 4), ('GREEN', 2), ('BLUE', 3)])
 print(Color.RED.name)
 print(Color.RED.value)
 print(color.RED.value)
+
+
+"""
+References: 
+1- https://docs.python.org/3/howto/enum.html#enum-basic-tutorial
+"""
